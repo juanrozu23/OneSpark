@@ -2,28 +2,31 @@ html {
   height: 100%;
 }
 
-
 body {
   position: relative;
   margin: 0;
-  font-family: arial;
-}
-
-.wrapper {
-  height: 100% !important;
-  margin: 0 auto; 
-  overflow: hidden;
-}
-
-.main {
-  margin: 0 auto;
   height: 100%;
-  flex-direction: column;
+  font-family: 'Source Sans Pro';
+}
+
+p {
+  font-size: 25px;
+  margin: 0;
+  text-align: center;
+  max-width: 60vw;
+}
+
+.actTitle {
+ color: white;
+}
+
+.main-container {
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
-
-
-
 
 .img-container {
   float: left;
@@ -32,19 +35,18 @@ body {
   margin-bottom: 1vh;
 }
 
-#mainLogo {
-  position: absolute;
-  top: 40%;
-  left: 38%;
-  width: 25%;
-}
-
-.pageContainer {
+.act-container {
   display: flex;
   flex-direction: row;
+}
+
+.scene-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
   padding: 0;
   margin: 0;
 }
@@ -57,8 +59,8 @@ body {
   align-items: center;
   flex-grow: 0;
   background-color: #FADC5C;
-  width : 33.33%;
-  height: 100%;
+  width : 33.33vw;
+  height: 100vh;
 }
 
 .In_Middle {
@@ -68,8 +70,8 @@ body {
   align-items: center;
   flex-grow: 0;
   background-color: #E64956;
-  width : 33.34%;
-  height: 100%;
+  width : 33.34vw;
+  height: 100vh;
 }
 
 
@@ -80,6 +82,10 @@ body {
   align-items: center;
   flex-grow: 0;
   background-color: #74D1DE;
-  width : 33.33%;
-  height: 100%;
+  width : 33.33vw;
+  height: 100vh;
+}
+
+#mainLogo {
+  width: 40vw;
 }

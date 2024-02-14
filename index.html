@@ -1,55 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
     <title> OneSpark </title>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="/Volumes/SAVE HERE/OneSpark/Library/jquery.onepage-scroll.js"></script>
-    <link href='/Volumes/SAVE HERE/OneSpark/Library/onepage-scroll.css' rel='stylesheet' type='text/css'>
-    
     <!-- import jquery -->
- <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <!-- import scroll animation library -->
-  <!--   <script src="Library/jquery.onepage-scroll.js"></script>-->
-  <!--  <link rel="stylesheet" href="Library/onepage-scroll.css"/> -->
-   <script src="script.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- import scroll animation library -->
+    <script src="lib/jquery.onepage-scroll.min.js"></script>
+    <link rel="stylesheet" href="lib/onepage-scroll.css"/>
+    <script src="script.js"></script>
 
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+    
+    <!-- import fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
+
   </head>
 
-
-
-<body>
-<div class="wrapper">
-<div class="main">
-    <section class="page1">
-         <div class="pageContainer">
-           <div class="page_Container">
-             <img id="mainLogo" src="/Volumes/SAVE HERE/OneSpark/Media/osLogo.png"/>
-             <h2>Scroll down to begin!</h2>
-           </div>
-         </div>
-   </section>
-
-   <section class="page2">
-         <div class="pageContainer">
-             <!-- LEFT -->
-           <div class="In_Left">
-                 <p>Spark Emotion</p>
-           </div>
-           <!-- MIDDLE -->
-
-           <div class="In_Middle">
-                   <p>Spark Reflection</p>
-           </div>
-           <!-- RIGHT -->
-           <div class="In_Right">
-                   <p>Spark Action</p>
-           </div>
+  <body>
+    <div class="main-container">
+      <section>
+        <div id="scene0" class="scene-container">
+          <div class="img-container">
+            <img id="mainLogo" src="Media/osLogo.png"/>
           </div>
-  </section>
-</div>
-</div>
+          <p>Scroll down to begin!</p>
+        </div>
+      </section>
+      
+      <section>
+        <div id="scene1" class="scene-container">
+          <div class="act-container">
+               <!-- LEFT -->
+                  <div class="In_Left">
+                    <p class="actTitle">Spark Emotion</p>
+                  </div>
+               <!-- MIDDLE -->
+                  <div class="In_Middle">
+                          <p class="actTitle">Spark Reflection</p>
+                  </div>
+               <!-- RIGHT -->
+                  <div class="In_Right">
+                          <p class="actTitle">Spark Action</p>
+                  </div>
+          </div>
+        </div>
+      </section>
 
+    </div>
   </body>
 </html>
