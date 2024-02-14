@@ -9,6 +9,21 @@ body {
   font-family: 'Source Sans Pro';
 }
 
+
+a:link { 
+  text-decoration: none; 
+} 
+a:visited { 
+  text-decoration: none; 
+} 
+a:hover { 
+  text-decoration: none; 
+} 
+a:active { 
+  text-decoration: none; 
+}
+
+
 p {
   font-size: 25px;
   margin: 0;
@@ -52,7 +67,7 @@ p {
 }
 
 
-.In_Left {
+#In_Left {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +78,12 @@ p {
   height: 100vh;
 }
 
-.In_Middle {
+#In_Left:hover {
+  background-color: #f9e485;
+}
+
+
+#In_Middle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,8 +94,12 @@ p {
   height: 100vh;
 }
 
+#In_Middle:hover {
+  background-color: #e86a75;
+}
 
-.In_Right {
+
+#In_Right {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,6 +110,20 @@ p {
   height: 100vh;
 }
 
+#In_Right:hover {
+  background-color: #a6d8de;
+}
+
 #mainLogo {
   width: 40vw;
+}
+
+.spark1 {
+  width : 5vw;
+  padding: 3vh;
+  margin: 0;
+}
+
+.spark1:hover {
+  width: 8vw;
 }
