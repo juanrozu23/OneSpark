@@ -1,6 +1,6 @@
 // SERIAL
 let force = 0;
-let knob = 255;
+//let knob = 255;
 let left = 0;
 let right = 0;
 
@@ -982,7 +982,7 @@ push();
   if(emotionChoice !== 0){
     continueButton(width*0.5, height*0.78, 255);
   }
-    force = 0;
+  
 }
 
 function ekmanVisualization(){
