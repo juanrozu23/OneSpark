@@ -1,6 +1,6 @@
 // SERIAL
-let force = 0;
-//let knob = 255;
+let force;
+let knob;
 let left = 0;
 let right = 0;
 
@@ -41,6 +41,7 @@ let right = 0;
     let desprecioSpark;
     let blackSpark;
     let graySpark;
+    let sparkie;
 
  // Logos
     let joy_logo;
@@ -62,7 +63,7 @@ let music = false;
 
 
   // Control Center 
-  let mode = 0;
+  let mode = 1;
 
   // Memory Game 
   const totalPairs = 7;
@@ -97,6 +98,7 @@ let miedox;
   let rabiay;
   let despreciox;
   let desprecioy;
+ let sparkieFill = 244; 
 
    // Circle Organize
     let centerx;
@@ -159,9 +161,12 @@ let instructionsSwitch;
     let brushSize = 10;
     let colors = [[192,159,232], [137,201,240], [255,217,94], [134,219,199], [255,143,117], [152,231,237], [240,171,98], [0], [255]];
     let brushes = ['circle', 'square', 'eraser'];
-    let squareFill = 0;
     let circleFill = 0;
     let hasBackgroundBeenSet = false;
+    let squarebFill = 240;
+    let circlebFill = 240;
+    let downArrowbFill = 240;
+    let upArrowbFill = 240;
 
 function preload() {
   homeButton = loadImage("Media/homeBttn.png");
@@ -173,6 +178,7 @@ function preload() {
   disgust = loadImage("Media/Disgust.png");
   surprise = loadImage("Media/Surprise.png");
   fear = loadImage("Media/Fear.png");
+  sparkie = loadImage('Media/lightning.png')
   
   
   joy_logo = loadImage("Media/logo_Felicidad.png");
@@ -378,25 +384,6 @@ function draw() {
 
   toggleMusic();
   
-  
-  if (mouseIsPressed) {
-    if (mouseX > width*0.95 && mouseY <height*0.15) {
-      // mode = 1;
-      // sparkWidth = width*0.1;
-      // backFillo = 0;
-      // pause = false;
-      // clear();
-      // hasBackgroundBeenSet = false;
-      window.open("https://juanrozu23.github.io/OneSpark/", "OneSpark");
-      music = false;
-        }
-  }
-
-
-//   if (serialActive) { 
-//     text("Connected", 20, 30);
-//   }  
-  
   if(music == true){
    if (!backgroundSong.isPlaying()) {
     backgroundSong.play();
@@ -433,6 +420,8 @@ function emotionCards () {
 }
 
 function ekmanVisualizationSelection () {
+  noStroke();
+  sparkieOn();
   
   ascox = centerx+cos(PI)*radius;
   ascoy = centery+sin(PI)*radius;
@@ -773,6 +762,7 @@ if(rabiaChoice == true){
 }
 
 function serialEkmanVisualizationSelection () {
+    sparkieOn();
   ascox = centerx+cos(PI)*radius;
   ascoy = centery+sin(PI)*radius;
   
@@ -801,7 +791,7 @@ function serialEkmanVisualizationSelection () {
   push();
   textSize(width/45);
   fill(0);
-  text("Escoge con la perilla de Sparkie la emoción que quieres explorar.", width * 0.5, height * 0.52, width*0.3);
+  text("Escoge con la perilla de Sparkie la emoción que quieres explorar.", width * 0.5, height * 0.48, width*0.35);
   rectMode(CORNER);
   pop();
 push();
@@ -814,21 +804,38 @@ push();
   ellipse(ascox, ascoy, width / 8);
   image(disgust,ascox, ascoy, width/10, width/10);
   
-  knob = map(knob, 0, 1023, 1, 8);
+ // knob = map(knob, 0, 1023, 1, 8);
   
-  if (knob>1 && knob <= 2){
+  // if (knob>0 && knob <= 2){
+  //   emotionChoice = 1;
+  // } else if (knob >2 && knob<=3){
+  //   emotionChoice = 2;
+  // } else if (knob>3 && knob<=4){
+  //   emotionChoice = 3
+  // } else if (knob>4 && knob<=5){
+  //   emotionChoice = 4 
+  // } else if (knob>5 && knob<=6){
+  //   emotionChoice = 5
+  // } else if (knob>6 && knob<=7){
+  //   emotionChoice = 6
+  // } else if (knob>7 && knob<=8){
+  //   emotionChoice = 7
+  // }
+    
+  
+  if (knob>0 && knob <=146){
     emotionChoice = 1;
-  } else if (knob >2 && knob<=3){
+  } else if (knob >146 && knob<=292){
     emotionChoice = 2;
-  } else if (knob>3 && knob<=4){
+  } else if (knob>292 && knob<=438){
     emotionChoice = 3
-  } else if (knob>4 && knob<=5){
+  } else if (knob>438 && knob<=584){
     emotionChoice = 4 
-  } else if (knob>5 && knob<=6){
+  } else if (knob>584 && knob<=730){
     emotionChoice = 5
-  } else if (knob>6 && knob<=7){
+  } else if (knob>730 && knob<=876){
     emotionChoice = 6
-  } else if (knob>7 && knob<=8){
+  } else if (knob>876 && knob<=1023){
     emotionChoice = 7
   }
     
@@ -982,7 +989,7 @@ push();
   if(emotionChoice !== 0){
     continueButton(width*0.5, height*0.78, 255);
   }
-  
+  //  force = 0;
 }
 
 function ekmanVisualization(){
@@ -1675,10 +1682,10 @@ function keyPressed() {
        pause = false;
      }
   }
-  if (keyCode == 83) {
+
     // important to have in order to start the serial connection!!
-    setUpSerial();
-  }
+
+
   
   if (keyCode == 77 && music == false ){
     music = true;
@@ -1705,13 +1712,14 @@ function applyBrush(x, y) {
 }
 
 function drawControls() {
+  
 if (mode == 3){
   textAlign(LEFT);
     // Background
   noStroke();
   fill(255);
   rect(0,height*0.8, width, height*0.2);
-
+  rect(width*0.83, 0, width, height*0.15, 20);
   
   push();
   noStroke();
@@ -1738,23 +1746,24 @@ if (mode == 3){
   textAlign(CENTER,CENTER);
   
   // Brushes
-  fill(240);
+  fill(squarebFill);
   rect(width*0.25, height*0.93, width/9, width/15, width/60);
-  fill(240);
+  fill(circlebFill);
   rect(width*0.37, height*0.93, width/9, width/15, width/60);
   
   //Size
     // Decrease size button
+  fill(downArrowbFill);
   rect(width*0.48, height*0.93, width/15, width/15, width/60);
   fill(0);
   textSize(width/30);
-  text("↓", width*0.48, height*0.93);
+  text("-", width*0.48, height*0.93);
   
   // Increase size button
-  fill(240);
+  fill(upArrowbFill);
   rect(width*0.65, height*0.93, width/15, width/15, width/60);
   fill(0);
-  text("↑", width*0.65, height*0.93);
+  text("+", width*0.65, height*0.93);
 pop();
   
   push();
@@ -1765,6 +1774,31 @@ pop();
    rect(width*0.25, height*0.93, width/32);
   ellipse(width*0.37, height*0.93, width/32);
   pop();
+  
+  // Brush type selection
+    if(mouseX > width*0.25 - width/18 && mouseX < width*0.25 + width/18 && mouseY > height*0.93-width/30 && mouseY < height*0.93 + width/30){
+      squarebFill = 220;
+    } else  {
+      squarebFill = 240;
+    }
+      if (mouseX > width*0.37 - width/18 && mouseX < width*0.37 + width/18 && mouseY > height*0.93-width/30 && mouseY < height*0.93 + width/30) {
+      circlebFill = 220;
+    } else {
+      circlebFill = 240;
+    }
+ 
+  // Brush size control
+  if (mouseX > width*0.48 - width/30 && mouseX < width*0.48 + width/30 && mouseY > height*0.93 - width/30 && mouseY < height*0.93 + width/30 ) {
+    downArrowbFill = 220;
+    } else {
+      downArrowbFill = 240;
+    }
+  
+  if (mouseX > width*0.65 - width/30 && mouseX < width*0.65 + width/30 && mouseY > height*0.93 - width/30 && mouseY < height*0.93 + width/30){
+      upArrowbFill = 220;
+      } else {
+        upArrowbFill = 240;
+      }
 }
   
 }
@@ -1812,7 +1846,24 @@ function mouseClicked(){
   
   if(mouseX > width*0.85 && mouseX < width*0.9 && mouseY < height*0.15){
    mode -=1;
+    pause = false;
+    clear();
   }
+  
+  if(mouseY>height*0.1-height/20 && mouseY<height*0.1+height/20 && mouseX>width*0.05-height/20 && mouseX<width*0.05+height/20){
+    setUpSerial();
+  }
+  
+   if (mouseX > width*0.95 && mouseY <height*0.15) {
+      // mode = 1;
+     //  sparkWidth = width*0.1;
+      // backFillo = 0;
+       //pause = false;
+      // clear();
+      // hasBackgroundBeenSet = false;
+      window.open("https://juanrozu23.github.io/OneSpark/", "OneSpark");
+      music = false;
+        }
 }
 
 function toggleMusic() {
@@ -1858,6 +1909,7 @@ function goBack() {
   } else {
     growBackButton = 0;
   }
+  
 }
 
 function readSerial(data) {
@@ -1880,3 +1932,26 @@ function readSerial(data) {
   }
 }
 
+function sparkieOn() {
+  push();    
+    fill(sparkieFill);
+ rectMode(CORNER);
+   ellipse(width*0.05, height*0.1, height/10);
+  fill(0);
+  text("Presiona este boton para conectarte con Sparkie!", width*0.07, height*0.065, width*0.2)
+    pop();
+  
+  if(mouseY>height*0.1-height/20 && mouseY<height*0.1+height/20 && mouseX>width*0.05-height/20 && mouseX<width*0.05+height/20){
+    sparkieFill = 220;
+  } else {
+    sparkieFill = 244;
+  }
+  
+  image(sparkie,width*0.026, height*0.051, width*0.05, width*0.05);
+  
+  if(serialActive){
+    sparkieFill = colors[2];
+    
+  }
+
+}
