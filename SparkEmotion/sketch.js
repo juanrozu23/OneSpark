@@ -994,7 +994,7 @@ push();
 
 function ekmanVisualization(){
   backFillo = constrain(backFillo, 0, 255);
-  sparkWidth = constrain(sparkWidth, width*0.1, width*0.25);
+  sparkWidth = constrain(sparkWidth, width*0.2, width*0.25);
   fill(backFillr, backFillg, backFillb, backFillo);
   rectMode(CORNER);
   rect(0,0, width, height);
@@ -1002,7 +1002,7 @@ function ekmanVisualization(){
 
 if(pause == false && mode == 2){
    if (serialActive) { 
-      sparkWidth = map(force, 500, 1023, width*0.1, width*0.25 );
+      sparkWidth = map(force, 500, 1023, width*0.2, width*0.25 );
       backFillo = map(force, 500, 1000, 0, 255);
     //sparkWidth += width*0.00001*(force);
       //  backFillo += 0.015*(force/10);
