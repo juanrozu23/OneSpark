@@ -63,7 +63,7 @@ let music = false;
 
 
   // Control Center 
-  let mode = 1;
+  let mode = 0;
 
   // Memory Game 
   const totalPairs = 7;
@@ -178,7 +178,7 @@ function preload() {
   disgust = loadImage("Media/Disgust.png");
   surprise = loadImage("Media/Surprise.png");
   fear = loadImage("Media/Fear.png");
-  sparkie = loadImage('Media/lightning.png')
+  sparkie = loadImage('Media/lightning.png');
   
   
   joy_logo = loadImage("Media/logo_Felicidad.png");
@@ -994,7 +994,7 @@ push();
 
 function ekmanVisualization(){
   backFillo = constrain(backFillo, 0, 255);
-  sparkWidth = constrain(sparkWidth, width*0.2, width*0.25);
+  sparkWidth = constrain(sparkWidth, width*0.1, width*0.25);
   fill(backFillr, backFillg, backFillb, backFillo);
   rectMode(CORNER);
   rect(0,0, width, height);
@@ -1002,7 +1002,7 @@ function ekmanVisualization(){
 
 if(pause == false && mode == 2){
    if (serialActive) { 
-      sparkWidth = map(force, 500, 1023, width*0.2, width*0.25 );
+      sparkWidth = map(force, 500, 1023, width*0.1, width*0.25 );
       backFillo = map(force, 500, 1000, 0, 255);
     //sparkWidth += width*0.00001*(force);
       //  backFillo += 0.015*(force/10);
@@ -1224,7 +1224,12 @@ pop();
   }
   
   if(instructionsSwitch == true){
-    instructions1 = "Manten la barra de espacio presionada para indicar la intensidad de tu sentimiento!";
+   if(serialActive){
+     instructions1 = "Aprieta a sparkie para indicar la intensidad de tu sentimiento.";
+   } else {
+     instructions1 = "Manten la barra de espacio presionada para indicar la intensidad de tu sentimiento.";
+   }
+    
   instructions2 = "Usa la tecla Enter para pausar y leer las descripciones.";
   instructionsOp = 70;
   setTimeout(hideInstructions, 7000);
@@ -1861,7 +1866,8 @@ function mouseClicked(){
        //pause = false;
       // clear();
       // hasBackgroundBeenSet = false;
-      window.open("https://juanrozu23.github.io/OneSpark/", "OneSpark");
+     window.location.href = 'https://juanrozu23.github.io/OneSpark/';
+      // window.open("https://juanrozu23.github.io/OneSpark/", "OneSpark", '_self');
       music = false;
         }
 }
@@ -1912,26 +1918,6 @@ function goBack() {
   
 }
 
-function readSerial(data) {
-
-
-  if (data != null) {
-    // make sure there is actually a message
-    // split the message
-    let fromArduino = split(trim(data), ",");
-    // if the right length, then proceed
-    if (fromArduino.length == 2) {
-      // only store values here
-      // do everything with those values in the main draw loop
-      force = fromArduino[0];
-      knob = fromArduino[1];
-    }
-    
-    let sendToArduino = left + "," + right + "\n";
-    writeSerial(sendToArduino);
-  }
-}
-
 function sparkieOn() {
   push();    
     fill(sparkieFill);
@@ -1955,3 +1941,25 @@ function sparkieOn() {
   }
 
 }
+
+function readSerial(data) {
+
+
+  if (data != null) {
+    // make sure there is actually a message
+    // split the message
+    let fromArduino = split(trim(data), ",");
+    // if the right length, then proceed
+    if (fromArduino.length == 2) {
+      // only store values here
+      // do everything with those values in the main draw loop
+      force = fromArduino[0];
+      knob = fromArduino[1];
+    }
+    
+    let sendToArduino = left + "," + right + "\n";
+    writeSerial(sendToArduino);
+  }
+}
+
+
